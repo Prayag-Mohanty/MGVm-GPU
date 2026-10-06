@@ -64,10 +64,13 @@ def write_small_hsl_and_inputs(f, config, benchmark):
     if config == 'mgvm' or config == 'mgvm-nobalance':
         f.write("-custom-hsl %d " % hsl)
         f.write("-mem-allocator-type hslaware-%d " % (hsl // 512))
+    # Like the paper inputs, SYRK and SYR2K are stopped after a fixed number
+    # of instructions. The caps are lowered for the small preset because the
+    # memory used by -report-all grows with the simulated time.
     if benchmark == 'syrk':
-        f.write("-max-inst 10000000 ")
+        f.write("-max-inst 3000000 ")
     if benchmark == 'syr2k':
-        f.write("-max-inst 30000000 ")
+        f.write("-max-inst 10000000 ")
     f.write(args)
 
 
