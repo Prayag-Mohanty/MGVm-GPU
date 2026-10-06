@@ -17,6 +17,7 @@ import (
 	"github.com/sarchlab/akita/v3/monitoring"
 	"github.com/sarchlab/akita/v3/sim"
 	"github.com/sarchlab/akita/v3/tracing"
+	"github.com/sarchlab/mgpusim/v3/mgvm"
 	"github.com/sarchlab/mgpusim/v3/timing/cp"
 	"github.com/sarchlab/mgpusim/v3/timing/cu"
 	"github.com/sarchlab/mgpusim/v3/timing/pagemigrationcontroller"
@@ -74,6 +75,15 @@ type R9NanoGPUBuilder struct {
 	pageMigrationController *pagemigrationcontroller.PageMigrationController
 	globalStorage           *mem.Storage
 
+	// MCM virtual memory (MGvm). When mcmVM is set, the GPU is built as a
+	// chiplet of an MCM GPU: its L2 TLB slice, RTU and page walkers replace
+	// the connection to the global MMU.
+	mcmVM        *mcmVMParams
+	l1TLBEntries int
+	l2TLBSlice   *mgvm.L2TLB
+	rtu          *mgvm.RTU
+	walker       *mgvm.PageWalker
+
 	internalConn           *sim.DirectConnection
 	l1TLBToL2TLBConnection *sim.DirectConnection
 	l1ToL2Connection       *sim.DirectConnection
@@ -92,7 +102,29 @@ func MakeR9NanoGPUBuilder() R9NanoGPUBuilder {
 		log2MemoryBankInterleavingSize: 12,
 		l2CacheSize:                    2 * mem.MB,
 		dramSize:                       4 * mem.GB,
+		l1TLBEntries:                   64,
 	}
+	return b
+}
+
+// mcmVMParams configures the per-chiplet virtual memory hardware.
+type mcmVMParams struct {
+	runtime       *mgvm.Runtime
+	l2TLBBuilder  mgvm.L2TLBBuilder
+	walkerBuilder mgvm.PageWalkerBuilder
+}
+
+// WithMCMVM builds the GPU as a chiplet of an MCM GPU with the given
+// virtual-memory hardware.
+func (b R9NanoGPUBuilder) WithMCMVM(p *mcmVMParams) R9NanoGPUBuilder {
+	b.mcmVM = p
+	return b
+}
+
+// WithL1TLBEntries sets the number of entries of the (fully associative)
+// L1 TLBs.
+func (b R9NanoGPUBuilder) WithL1TLBEntries(n int) R9NanoGPUBuilder {
+	b.l1TLBEntries = n
 	return b
 }
 
@@ -232,12 +264,20 @@ func (b R9NanoGPUBuilder) Build(name string, id uint64) *GPU {
 	b.buildL2Caches()
 	b.buildDRAMControllers()
 	b.buildCP()
-	b.buildL2TLB()
+	if b.mcmVM != nil {
+		b.buildMCMVM()
+	} else {
+		b.buildL2TLB()
+	}
 
 	b.connectCP()
 	b.connectL2AndDRAM()
 	b.connectL1ToL2()
-	b.connectL1TLBToL2TLB()
+	if b.mcmVM != nil {
+		b.connectMCMVM()
+	} else {
+		b.connectL1TLBToL2TLB()
+	}
 
 	b.populateExternalPorts()
 
@@ -253,6 +293,10 @@ func (b *R9NanoGPUBuilder) populateExternalPorts() {
 	for i, l2TLB := range b.l2TLBs {
 		name := fmt.Sprintf("Translation_%02d", i)
 		b.gpu.Domain.AddPort(name, l2TLB.GetPortByName("Bottom"))
+	}
+
+	if b.rtu != nil {
+		b.gpu.Domain.AddPort("RTU", b.rtu.GetPortByName("Remote"))
 	}
 }
 
@@ -327,6 +371,13 @@ func (b *R9NanoGPUBuilder) connectL1ToL2() {
 	for _, l1iAT := range b.l1iAddrTrans {
 		l1iAT.SetLowModuleFinder(lowModuleFinder)
 		l1ToL2Conn.PlugIn(l1iAT.GetPortByName("Bottom"), 16)
+	}
+
+	if b.walker != nil {
+		// Page walkers read PTEs through the chiplet's memory hierarchy:
+		// the local L2 cache or, for remote PTEs, the RDMA engine.
+		b.walker.MemFinder = lowModuleFinder
+		l1ToL2Conn.PlugIn(b.walker.GetPortByName("Mem"), 64)
 	}
 }
 
@@ -488,7 +539,8 @@ func (b *R9NanoGPUBuilder) buildSAs() {
 		withGPUID(b.gpuID).
 		withLog2CachelineSize(b.log2CacheLineSize).
 		withLog2PageSize(b.log2PageSize).
-		withNumCU(b.numCUPerShaderArray)
+		withNumCU(b.numCUPerShaderArray).
+		withL1TLBEntries(b.l1TLBEntries)
 
 	if b.enableISADebugging {
 		saBuilder = saBuilder.withIsaDebugging()
@@ -853,4 +905,60 @@ func (b *R9NanoGPUBuilder) connectWithDirectConnection(
 	)
 	conn.PlugIn(port1, bufferSize)
 	conn.PlugIn(port2, bufferSize)
+}
+
+func (b *R9NanoGPUBuilder) buildMCMVM() {
+	chiplet := int(b.gpuID) - 1
+
+	b.l2TLBSlice = b.mcmVM.l2TLBBuilder.Build(b.gpuName+".L2TLB", chiplet)
+	b.walker = b.mcmVM.walkerBuilder.Build(b.gpuName+".PTW", chiplet)
+	b.rtu = mgvm.NewRTU(b.gpuName+".RTU", b.engine, b.freq, chiplet,
+		b.mcmVM.runtime.Cfg.EpochSize)
+
+	b.l2TLBSlice.RTU = b.rtu.GetPortByName("L2")
+	b.l2TLBSlice.Walker = b.walker.GetPortByName("Top")
+	b.rtu.L2TLB = b.l2TLBSlice.GetPortByName("Top")
+
+	b.mcmVM.runtime.Register(b.rtu, b.l2TLBSlice, b.walker)
+
+	b.gpu.L2TLBs = append(b.gpu.L2TLBs, b.l2TLBSlice)
+	b.gpu.RTU = b.rtu
+
+	if b.monitor != nil {
+		b.monitor.RegisterComponent(b.l2TLBSlice)
+		b.monitor.RegisterComponent(b.walker)
+		b.monitor.RegisterComponent(b.rtu)
+	}
+}
+
+// connectMCMVM connects the L1 TLBs to the RTU, and the RTU, L2 TLB slice
+// and page walkers with each other.
+func (b *R9NanoGPUBuilder) connectMCMVM() {
+	conn := sim.NewDirectConnection(b.gpuName+".VMConn", b.engine, b.freq)
+
+	rtuTop := b.rtu.GetPortByName("Top")
+	conn.PlugIn(rtuTop, 64)
+	conn.PlugIn(b.rtu.GetPortByName("L2"), 64)
+	conn.PlugIn(b.l2TLBSlice.GetPortByName("Top"), 64)
+	conn.PlugIn(b.l2TLBSlice.GetPortByName("Bottom"), 64)
+	conn.PlugIn(b.walker.GetPortByName("Top"), 64)
+
+	for _, l1vTLB := range b.l1vTLBs {
+		l1vTLB.LowModule = rtuTop
+		conn.PlugIn(l1vTLB.GetPortByName("Bottom"), 16)
+	}
+
+	for _, l1iTLB := range b.l1iTLBs {
+		l1iTLB.LowModule = rtuTop
+		conn.PlugIn(l1iTLB.GetPortByName("Bottom"), 16)
+	}
+
+	for _, l1sTLB := range b.l1sTLBs {
+		l1sTLB.LowModule = rtuTop
+		conn.PlugIn(l1sTLB.GetPortByName("Bottom"), 16)
+	}
+
+	ctrl := b.l2TLBSlice.GetPortByName("Control")
+	b.cp.TLBs = append(b.cp.TLBs, ctrl)
+	b.internalConn.PlugIn(ctrl, 1)
 }

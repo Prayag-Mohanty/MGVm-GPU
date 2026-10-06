@@ -4,6 +4,7 @@ import (
 	"github.com/sarchlab/akita/v3/sim"
 	"github.com/sarchlab/akita/v3/tracing"
 	"github.com/sarchlab/mgpusim/v3/driver"
+	"github.com/sarchlab/mgpusim/v3/mgvm"
 	"github.com/sarchlab/mgpusim/v3/timing/cp"
 	"github.com/sarchlab/mgpusim/v3/timing/pagemigrationcontroller"
 	"github.com/sarchlab/mgpusim/v3/timing/rdma"
@@ -20,6 +21,10 @@ type Platform struct {
 	Engine sim.Engine
 	Driver *driver.Driver
 	GPUs   []*GPU
+
+	// MGvm is the runtime of the MCM virtual memory (nil for the default
+	// multi-GPU platform).
+	MGvm *mgvm.Runtime
 }
 
 // A GPU is a collection of GPU internal Components
@@ -39,4 +44,5 @@ type GPU struct {
 	L1ITLBs          []TraceableComponent
 	L2TLBs           []TraceableComponent
 	MemControllers   []TraceableComponent
+	RTU              *mgvm.RTU
 }

@@ -51,6 +51,8 @@ type shaderArrayBuilder struct {
 	memTracer    tracing.Tracer
 
 	connectionCount int
+
+	l1TLBEntries int
 }
 
 func makeShaderArrayBuilder() shaderArrayBuilder {
@@ -61,7 +63,13 @@ func makeShaderArrayBuilder() shaderArrayBuilder {
 		freq:              1 * sim.GHz,
 		log2CacheLineSize: 6,
 		log2PageSize:      12,
+		l1TLBEntries:      64,
 	}
+	return b
+}
+
+func (b shaderArrayBuilder) withL1TLBEntries(n int) shaderArrayBuilder {
+	b.l1TLBEntries = n
 	return b
 }
 
@@ -333,7 +341,7 @@ func (b *shaderArrayBuilder) buildL1VTLBs(sa *shaderArray) {
 		WithFreq(b.freq).
 		WithNumMSHREntry(4).
 		WithNumSets(1).
-		WithNumWays(64).
+		WithNumWays(b.l1TLBEntries).
 		WithNumReqPerCycle(4)
 
 	for i := 0; i < b.numCU; i++ {
@@ -411,7 +419,7 @@ func (b *shaderArrayBuilder) buildL1STLB(sa *shaderArray) {
 		WithFreq(b.freq).
 		WithNumMSHREntry(4).
 		WithNumSets(1).
-		WithNumWays(64).
+		WithNumWays(b.l1TLBEntries).
 		WithNumReqPerCycle(4)
 
 	name := fmt.Sprintf("%s.L1STLB", b.name)
@@ -485,7 +493,7 @@ func (b *shaderArrayBuilder) buildL1ITLB(sa *shaderArray) {
 		WithFreq(b.freq).
 		WithNumMSHREntry(4).
 		WithNumSets(1).
-		WithNumWays(64).
+		WithNumWays(b.l1TLBEntries).
 		WithNumReqPerCycle(4)
 
 	name := fmt.Sprintf("%s.L1ITLB", b.name)

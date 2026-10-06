@@ -61,11 +61,16 @@ type Runner struct {
 // Init initializes the platform simulate
 func (r *Runner) Init() *Runner {
 	r.ParseFlag()
+	if r.mcmMode() {
+		r.initMCM()
+	}
 	r.parseGPUFlag()
 
 	log.SetFlags(log.Llongfile | log.Ldate | log.Ltime)
 
-	if r.Timing {
+	if r.mcmMode() {
+		r.buildMCMPlatformFromFlags()
+	} else if r.Timing {
 		r.buildTimingPlatform()
 	} else {
 		r.buildEmuPlatform()
