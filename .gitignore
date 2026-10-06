@@ -1,0 +1,9 @@
+*.sqlite3
+metrics.csv
+/scripts/private/
+/scripts/shared/
+/scripts/mgvm/
+/scripts/mgvm-nobalance/
+/scripts/bin/
+/scripts/results*/
+*.log
