@@ -1,0 +1,25 @@
+# per-configuration run folders created by scripts/2_copy_benchmarks.sh
+/scripts/private/
+/scripts/shared/
+/scripts/mgvm/
+/scripts/mgvm-nobalance/
+/scripts/run_all.log
+__pycache__/
+*.sqlite3
+
+# sample binaries built by scripts/1_compile_benchmarks.py
+/mgpusim/samples/convolution2d/convolution2d
+/mgpusim/samples/fastwalshtransform/fastwalshtransform
+/mgpusim/samples/gups/gups
+/mgpusim/samples/jacobi1d/jacobi1d
+/mgpusim/samples/jacobi2d/jacobi2d
+/mgpusim/samples/kmeans/kmeans
+/mgpusim/samples/matrixtranspose/matrixtranspose
+/mgpusim/samples/mis/mis
+/mgpusim/samples/pagerank/pagerank
+/mgpusim/samples/simpleconvolution/simpleconvolution
+/mgpusim/samples/shoc-reduction/shoc-reduction
+/mgpusim/samples/spmv/spmv
+/mgpusim/samples/stencil2d/stencil2d
+/mgpusim/samples/syrk/syrk
+/mgpusim/samples/syr2k/syr2k

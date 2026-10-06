@@ -1,4 +1,23 @@
 #!/usr/bin/python3
+"""Generates <config>/<benchmark>.sh for the 4 configurations x 15 workloads.
+
+Usage: ./3_gen_runners.py [--preset paper|small]
+
+  paper  The inputs used for the paper (default). Needs ~300-400GB of RAM
+         per configuration and up to a day per run.
+  small  Scaled-down inputs (largest allocation 8-32MB, still larger than the
+         8MB aggregate L2 TLB reach) that finish in roughly 10-60 minutes per
+         run with < 4GB of RAM each. The MGvm HSL and the HSL-aware allocator
+         are scaled with the largest allocation exactly as for the paper
+         inputs: custom-hsl = largest allocation / 4 chiplets / 4KB (at least
+         512 pages = 2MB), hslaware-N with N = custom-hsl / 512.
+"""
+
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--preset", choices=["paper", "small"], default="paper")
+preset = parser.parse_args().preset
 
 configs = ['private', 'shared', 'mgvm', 'mgvm-nobalance']
 
@@ -19,6 +38,38 @@ benchmarks = [
         'syrk',
         'syr2k',
         ]
+
+# benchmark: (input arguments, custom-hsl in pages)
+small_inputs = {
+    'convolution2d': ("-ni=2048 -nj=2048 ", 1024),
+    'fastwalshtransform': ("-length=2097152 ", 512),
+    'gups': (" ", 1024),
+    'jacobi1d': ("-n=4194304 -steps=1", 1024),
+    'jacobi2d': ("-n=2048 -steps=1", 1024),
+    'kmeans': ("-points=131072 -features=32 -clusters=20 -max-iter=1 ", 1024),
+    'matrixtranspose': ("-width=2048 ", 1024),
+    'mis': ("-numNodes=131072 -numItems=262144 ", 512),
+    'pagerank': ("-node=4096 -sparsity=0.5 -iterations=1 ", 2048),
+    'simpleconvolution': ("-width=2046 -height=2046 ", 1024),
+    'shoc-reduction': ("-Size=4194304 -Iterations=1 ", 1024),
+    'spmv': ("-dim=262144 -sparsity=0.0001 ", 512),
+    'stencil2d': ("-row=2048 -col=2048 ", 1024),
+    'syrk': ("-ni=2048 -nj=2048 ", 1024),
+    'syr2k': ("-ni=1024 -nj=1024 ", 512),
+}
+
+
+def write_small_hsl_and_inputs(f, config, benchmark):
+    args, hsl = small_inputs[benchmark]
+    if config == 'mgvm' or config == 'mgvm-nobalance':
+        f.write("-custom-hsl %d " % hsl)
+        f.write("-mem-allocator-type hslaware-%d " % (hsl // 512))
+    if benchmark == 'syrk':
+        f.write("-max-inst 10000000 ")
+    if benchmark == 'syr2k':
+        f.write("-max-inst 30000000 ")
+    f.write(args)
+
 
 for config in configs:
     for benchmark in benchmarks:
@@ -81,6 +132,12 @@ for config in configs:
             submit_file.write("-sched-partition Xdiv ")
         elif benchmark == 'syr2k':
             submit_file.write("-sched-partition Xdiv ")
+
+        if preset == 'small':
+            write_small_hsl_and_inputs(submit_file, config, benchmark)
+            submit_file.write("\n")
+            submit_file.close()
+            continue
 
         # set appropriate HSL values
         if config == 'mgvm' or config == 'mgvm-nobalance':
@@ -167,4 +224,5 @@ for config in configs:
             submit_file.write("-ni=2048 -nj=2048 ")
         if benchmark == 'syr2k':
             submit_file.write("-ni=1024 -nj=1024 ")
-
+        submit_file.write("\n")
+        submit_file.close()
