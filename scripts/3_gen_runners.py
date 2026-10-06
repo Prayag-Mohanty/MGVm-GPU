@@ -52,10 +52,10 @@ small_inputs = {
     'pagerank': ("-node=4096 -sparsity=0.5 -iterations=1 ", 2048),
     'simpleconvolution': ("-width=2046 -height=2046 ", 1024),
     'shoc-reduction': ("-Size=4194304 -Iterations=1 ", 1024),
-    'spmv': ("-dim=262144 -sparsity=0.0001 ", 512),
+    'spmv': ("-dim=131072 -sparsity=0.0002 ", 512),
     'stencil2d': ("-row=2048 -col=2048 ", 1024),
-    'syrk': ("-ni=2048 -nj=2048 ", 1024),
-    'syr2k': ("-ni=1024 -nj=1024 ", 512),
+    'syrk': ("-ni=1024 -nj=1024 ", 512),
+    'syr2k': ("-ni=512 -nj=512 ", 512),
 }
 
 
