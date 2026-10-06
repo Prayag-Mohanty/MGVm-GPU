@@ -28,6 +28,13 @@ static inline uint mgvm_local_id(uint dim) {
 #define get_local_size(d) mgvm_local_size(d)
 #define get_group_id(d) mgvm_group_id(d)
 #define get_local_id(d) mgvm_local_id(d)
+static inline void mgvm_barrier(void) {
+  __builtin_amdgcn_fence(__ATOMIC_RELEASE, "workgroup");
+  __builtin_amdgcn_s_barrier();
+  __builtin_amdgcn_fence(__ATOMIC_ACQUIRE, "workgroup");
+}
+
+#define barrier(flags) mgvm_barrier()
 #define get_global_id(d) (mgvm_group_id(d) * mgvm_local_size(d) + mgvm_local_id(d))
 
 #endif

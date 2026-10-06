@@ -22,11 +22,11 @@ type Driver struct {
 	*sim.TickingComponent
 
 	memAllocator  internal.MemoryAllocator
+	distributor   distributor
+	globalStorage *mem.Storage
 
 	ctaPolicy        CTAPolicy
 	kernelLaunchHook KernelLaunchHook
-	distributor   distributor
-	globalStorage *mem.Storage
 
 	GPUs        []sim.Port
 	devices     []*internal.Device

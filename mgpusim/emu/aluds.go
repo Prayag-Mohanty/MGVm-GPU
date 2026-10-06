@@ -15,6 +15,8 @@ func (u *ALUImpl) runDS(state InstEmuState) {
 		u.runDSREADB32(state)
 	case 55:
 		u.runDSREAD2B32(state)
+	case 56:
+		u.runDSREAD2ST64B32(state)
 	case 78:
 		u.runDSWRITE2B64(state)
 	case 118:
@@ -87,6 +89,16 @@ func (u *ALUImpl) runDSREADB32(state InstEmuState) {
 }
 
 func (u *ALUImpl) runDSREAD2B32(state InstEmuState) {
+	u.runDSREAD2B32WithStride(state, 4)
+}
+
+// runDSREAD2ST64B32 is ds_read2st64_b32: the offsets are in units of 64
+// dwords.
+func (u *ALUImpl) runDSREAD2ST64B32(state InstEmuState) {
+	u.runDSREAD2B32WithStride(state, 4*64)
+}
+
+func (u *ALUImpl) runDSREAD2B32WithStride(state InstEmuState, stride uint32) {
 	inst := state.Inst()
 	sp := state.Scratchpad()
 	layout := sp.AsDS()
@@ -98,11 +110,11 @@ func (u *ALUImpl) runDSREAD2B32(state InstEmuState) {
 			continue
 		}
 
-		addr0 := layout.ADDR[i] + inst.Offset0*4
+		addr0 := layout.ADDR[i] + inst.Offset0*stride
 		dstOffset := uint(8 + 64*4 + 256*4*2)
 		copy(sp[dstOffset+i*16:dstOffset+i*16+4], lds[addr0:addr0+4])
 
-		addr1 := layout.ADDR[i] + inst.Offset1*4
+		addr1 := layout.ADDR[i] + inst.Offset1*stride
 		copy(sp[dstOffset+i*16+4:dstOffset+i*16+8], lds[addr1:addr1+4])
 	}
 }

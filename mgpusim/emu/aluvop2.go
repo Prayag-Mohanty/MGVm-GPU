@@ -53,6 +53,8 @@ func (u *ALUImpl) runVOP2(state InstEmuState) {
 		u.runVXORB32(state)
 	case 22:
 		u.runVMACF32(state)
+	case 23:
+		u.runVMADMKF32(state)
 	case 24:
 		u.runVMADAKF32(state)
 	case 25:
@@ -510,6 +512,26 @@ func (u *ALUImpl) runVMACF32(state InstEmuState) {
 		}
 	} else {
 		log.Panicf("SDWA for VOP2 instruction opcode  %d not implemented \n", inst.Opcode)
+	}
+}
+
+// runVMADMKF32 is v_madmk_f32: D = S0 * K + S1, K being a literal constant.
+func (u *ALUImpl) runVMADMKF32(state InstEmuState) {
+	sp := state.Scratchpad().AsVOP2()
+	inst := state.Inst()
+
+	if inst.IsSdwa {
+		log.Panicf("SDWA for VOP2 instruction opcode  %d not implemented \n", inst.Opcode)
+	}
+
+	k := asFloat32(uint32(sp.LiteralConstant))
+	for i := uint(0); i < 64; i++ {
+		if !laneMasked(sp.EXEC, i) {
+			continue
+		}
+		src0 := asFloat32(uint32(sp.SRC0[i]))
+		src1 := asFloat32(uint32(sp.SRC1[i]))
+		sp.DST[i] = uint64(float32ToBits(src0*k + src1))
 	}
 }
 
