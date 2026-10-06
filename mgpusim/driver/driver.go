@@ -22,6 +22,9 @@ type Driver struct {
 	*sim.TickingComponent
 
 	memAllocator  internal.MemoryAllocator
+
+	ctaPolicy        CTAPolicy
+	kernelLaunchHook KernelLaunchHook
 	distributor   distributor
 	globalStorage *mem.Storage
 
@@ -375,7 +378,13 @@ func (d *Driver) processUnifiedMultiGPULaunchKernelCommand(
 	cmd *LaunchUnifiedMultiGPUKernelCommand,
 	queue *CommandQueue,
 ) bool {
+	if d.kernelLaunchHook != nil {
+		d.kernelLaunchHook(now, queue.Context.pid, queue.Context.Allocations())
+	}
+
 	wgDist := d.distributeWGToGPUs(queue, cmd)
+	numChiplets := len(d.devices[queue.GPUID].UnifiedGPUIDs)
+	ctaPolicy := d.ctaPolicy
 
 	dev := d.devices[queue.GPUID]
 	for i, gpuID := range dev.UnifiedGPUIDs {
@@ -401,6 +410,10 @@ func (d *Driver) processUnifiedMultiGPULaunchKernelCommand(
 				wg.IDZ*int(numWGX)*int(numWGY) +
 					wg.IDY*int(numWGX) +
 					wg.IDX
+
+			if ctaPolicy == CTAPolicyRoundRobin {
+				return flattenedID%numChiplets == currentGPUIndex
+			}
 
 			if flattenedID >= wgDist[currentGPUIndex] &&
 				flattenedID < wgDist[currentGPUIndex+1] {
@@ -443,6 +456,16 @@ func (d *Driver) distributeWGToGPUs(
 	numWGZ := (cmd.PacketArray[0].GridSizeZ-1)/uint32(cmd.PacketArray[0].WorkgroupSizeZ) + 1
 	totalWGCount := int(numWGX * numWGY * numWGZ)
 	wgPerCU := (totalWGCount-1)/totalCUCount + 1
+
+	if d.ctaPolicy != CTAPolicyMGPUSimDefault {
+		n := len(actualGPUs)
+		perChiplet := (totalWGCount + n - 1) / n
+		for i := range actualGPUs {
+			wgDist[i+1] = wgDist[i] + perChiplet
+		}
+
+		return wgDist
+	}
 
 	for i, devID := range actualGPUs {
 		cuCount := d.devices[devID].Properties.CUCount

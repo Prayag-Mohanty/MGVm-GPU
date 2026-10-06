@@ -22,7 +22,28 @@ type MemoryAllocator interface {
 		vAddr uint64,
 		unified bool,
 	) vm.Page
+
+	// SetUnifiedGPUPlacement selects how the pages of an allocation made on
+	// a unified (multi-chiplet) GPU are spread across the chiplets.
+	SetUnifiedGPUPlacement(policy PlacementPolicy, vaAlignment uint64)
+
+	// SetPagePlacedHook registers a callback that is invoked every time a
+	// page is mapped to the physical memory of a GPU.
+	SetPagePlacedHook(hook func(page vm.Page))
 }
+
+// PlacementPolicy determines how pages of unified-GPU allocations are placed.
+type PlacementPolicy int
+
+const (
+	// PlacementRoundRobin interleaves consecutive pages across chiplets (the
+	// default MGPUSim behavior, used as the "naive" baseline).
+	PlacementRoundRobin PlacementPolicy = iota
+
+	// PlacementLASPBlock partitions every allocation into numChiplets
+	// contiguous blocks, block i living on chiplet i (LASP data placement).
+	PlacementLASPBlock
+)
 
 // NewMemoryAllocator creates a new memory allocator.
 func NewMemoryAllocator(
@@ -55,6 +76,28 @@ type memoryAllocatorImpl struct {
 	processMemoryStates  map[vm.PID]*processMemoryState
 	devices              map[int]*Device
 	totalStorageByteSize uint64
+
+	unifiedPlacement PlacementPolicy
+	vaAlignment      uint64
+	pagePlacedHook   func(page vm.Page)
+}
+
+func (a *memoryAllocatorImpl) SetUnifiedGPUPlacement(
+	policy PlacementPolicy,
+	vaAlignment uint64,
+) {
+	a.unifiedPlacement = policy
+	a.vaAlignment = vaAlignment
+}
+
+func (a *memoryAllocatorImpl) SetPagePlacedHook(hook func(page vm.Page)) {
+	a.pagePlacedHook = hook
+}
+
+func (a *memoryAllocatorImpl) notifyPagePlaced(page vm.Page) {
+	if a.pagePlacedHook != nil {
+		a.pagePlacedHook(page)
+	}
 }
 
 func (a *memoryAllocatorImpl) RegisterDevice(device *Device) {
@@ -145,10 +188,26 @@ func (a *memoryAllocatorImpl) allocatePages(
 	device := a.devices[deviceID]
 
 	pageSize := uint64(1 << a.log2PageSize)
+	isUnifiedGPU := device.Type == DeviceTypeUnifiedGPU
+	if isUnifiedGPU && a.vaAlignment > 0 {
+		pState.nextVAddr = (pState.nextVAddr + a.vaAlignment - 1) /
+			a.vaAlignment * a.vaAlignment
+	}
 	nextVAddr := pState.nextVAddr
 
+	blockPages := 0
+	if isUnifiedGPU && a.unifiedPlacement == PlacementLASPBlock {
+		n := len(device.ActualGPUs)
+		blockPages = (numPages + n - 1) / n
+	}
+
 	for i := 0; i < numPages; i++ {
-		pAddr := device.allocatePage()
+		var pAddr uint64
+		if blockPages > 0 {
+			pAddr = device.ActualGPUs[i/blockPages].allocatePage()
+		} else {
+			pAddr = device.allocatePage()
+		}
 		vAddr := nextVAddr + uint64(i)*pageSize
 
 		page := vm.Page{
@@ -165,6 +224,7 @@ func (a *memoryAllocatorImpl) allocatePages(
 		// debug.PrintStack()
 		a.pageTable.Insert(page)
 		a.vAddrToPageMapping[page.VAddr] = page
+		a.notifyPagePlaced(page)
 	}
 
 	pState.nextVAddr += pageSize * uint64(numPages)
@@ -246,6 +306,7 @@ func (a *memoryAllocatorImpl) allocatePageWithGivenVAddr(
 	}
 	a.vAddrToPageMapping[page.VAddr] = page
 	a.pageTable.Update(page)
+	a.notifyPagePlaced(page)
 
 	return page
 }
@@ -273,6 +334,7 @@ func (a *memoryAllocatorImpl) allocateMultiplePagesWithGivenVAddrs(
 		}
 		a.vAddrToPageMapping[page.VAddr] = page
 		a.pageTable.Update(page)
+		a.notifyPagePlaced(page)
 		pages = append(pages, page)
 	}
 

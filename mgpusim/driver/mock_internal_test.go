@@ -137,3 +137,15 @@ func (mr *MockMemoryAllocatorMockRecorder) RemovePage(arg0 interface{}) *gomock.
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RemovePage", reflect.TypeOf((*MockMemoryAllocator)(nil).RemovePage), arg0)
 }
+
+// SetUnifiedGPUPlacement mocks base method.
+func (m *MockMemoryAllocator) SetUnifiedGPUPlacement(arg0 internal.PlacementPolicy, arg1 uint64) {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "SetUnifiedGPUPlacement", arg0, arg1)
+}
+
+// SetPagePlacedHook mocks base method.
+func (m *MockMemoryAllocator) SetPagePlacedHook(arg0 func(vm.Page)) {
+	m.ctrl.T.Helper()
+	m.ctrl.Call(m, "SetPagePlacedHook", arg0)
+}
