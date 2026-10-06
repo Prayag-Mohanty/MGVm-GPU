@@ -1,0 +1,1156 @@
+private/samples/
+['private']
+convolution2d
+2051 71302
+tlb miss rate: 2.8764971529550363
+2055 71425
+tlb miss rate: 2.87714385719286
+2055 72139
+tlb miss rate: 2.8486671564618304
+2051 71786
+tlb miss rate: 2.8571030563062436
+queue length 0 2.54597346498
+queue length 1 3.17965698284
+queue length 2 3.54177352056
+queue length 3 3.37419552559
+average_mshr_uniq_len_g0 0 5.22377037357
+average_mshr_uniq_len_g0 1 5.29711808944
+average_mshr_uniq_len_g0 2 5.12145972505
+average_mshr_uniq_len_g0 3 5.19062235989
+###################### 0.866946680992981
+********************mmu-frac-remote-mem-reqs-level-3 0.1693548387096774
+fastwalshtransform
+527 1850
+tlb miss rate: 28.486486486486484
+520 1823
+tlb miss rate: 28.52441031267142
+519 1826
+tlb miss rate: 28.42278203723987
+519 1839
+tlb miss rate: 28.221859706362153
+queue length 0 1.08864864864
+queue length 1 1.06088864509
+queue length 2 1.06900328587
+queue length 3 1.07014681892
+average_mshr_uniq_len_g0 0 8.27898832684
+average_mshr_uniq_len_g0 1 8.44550930996
+average_mshr_uniq_len_g0 2 7.40189061445
+average_mshr_uniq_len_g0 3 8.68112449799
+###################### 0.7170891251022077
+********************mmu-frac-remote-mem-reqs-level-3 0.24
+gups
+580177 661866
+tlb miss rate: 87.65777362789447
+572506 659196
+tlb miss rate: 86.84913136608839
+573691 660559
+tlb miss rate: 86.84932004559775
+567159 658789
+tlb miss rate: 86.09114602702837
+queue length 0 51.21886152498
+queue length 1 48.8256672209
+queue length 2 48.59419545541
+queue length 3 48.88215967774
+average_mshr_uniq_len_g0 0 63.13355951788
+average_mshr_uniq_len_g0 1 63.17079710329
+average_mshr_uniq_len_g0 2 62.97103186743
+average_mshr_uniq_len_g0 3 62.70532173047
+###################### 0.8743698895247329
+********************mmu-frac-remote-mem-reqs-level-3 0.9999499473865552
+jacobi1d
+4103 17309
+tlb miss rate: 23.70443122075221
+4104 17014
+tlb miss rate: 24.1213118608205
+4104 16760
+tlb miss rate: 24.48687350835322
+4103 16312
+tlb miss rate: 25.153261402648358
+queue length 0 1.2192501011
+queue length 1 1.21940754672
+queue length 2 1.23198090692
+queue length 3 1.22835948994
+average_mshr_uniq_len_g0 0 19.99243847874
+average_mshr_uniq_len_g0 1 17.22990743046
+average_mshr_uniq_len_g0 2 17.01976023338
+average_mshr_uniq_len_g0 3 16.47173743758
+###################### 0.42878551821351735
+********************mmu-frac-remote-mem-reqs-level-3 0.1568627450980392
+jacobi2d
+4098 105081
+tlb miss rate: 3.899848688154852
+4106 106821
+tlb miss rate: 3.8438134823676995
+4106 105542
+tlb miss rate: 3.8903943453790912
+4098 100152
+tlb miss rate: 4.091780493649653
+queue length 0 6.53591039293
+queue length 1 7.41493713782
+queue length 2 7.46612722897
+queue length 3 6.00084870996
+average_mshr_uniq_len_g0 0 13.59493108945
+average_mshr_uniq_len_g0 1 14.36486133177
+average_mshr_uniq_len_g0 2 14.0017365616
+average_mshr_uniq_len_g0 3 14.22189742762
+###################### 0.5431038611480953
+********************mmu-frac-remote-mem-reqs-level-3 0.189873417721519
+kmeans
+54380 377317
+tlb miss rate: 14.412284630695146
+54241 377378
+tlb miss rate: 14.373121909597275
+54281 377357
+tlb miss rate: 14.384521818861185
+54192 377351
+tlb miss rate: 14.361165069126622
+queue length 0 1.98490480299
+queue length 1 1.78639076655
+queue length 2 1.80950137113
+queue length 3 1.65579431178
+average_mshr_uniq_len_g0 0 24.20310208999
+average_mshr_uniq_len_g0 1 23.30825487968
+average_mshr_uniq_len_g0 2 23.96064960368
+average_mshr_uniq_len_g0 3 22.04963850933
+###################### 0.4507099826885199
+********************mmu-frac-remote-mem-reqs-level-3 0.9965383550263085
+matrixtranspose
+41896 107747
+tlb miss rate: 38.88368121618235
+40700 107639
+tlb miss rate: 37.81157387192374
+42476 107240
+tlb miss rate: 39.608355091383814
+40723 107524
+tlb miss rate: 37.8734050072542
+queue length 0 133.61680854758
+queue length 1 132.13927544516
+queue length 2 133.87740182084
+queue length 3 131.83431478715
+average_mshr_uniq_len_g0 0 63.38788397026
+average_mshr_uniq_len_g0 1 63.17710244299
+average_mshr_uniq_len_g0 2 63.56849160933
+average_mshr_uniq_len_g0 3 63.41382366713
+###################### 0.9965918865512031
+********************mmu-frac-remote-mem-reqs-level-3 0.9978025407310128
+mis
+600 142225
+tlb miss rate: 0.4218667604148356
+563 116435
+tlb miss rate: 0.48353158414566066
+534 100754
+tlb miss rate: 0.5300037715624193
+496 94776
+tlb miss rate: 0.5233392420021947
+queue length 0 122.37688237688
+queue length 1 68.69060716672
+queue length 2 83.56070148337
+queue length 3 106.72895529278
+average_mshr_uniq_len_g0 0 17.35736579275
+average_mshr_uniq_len_g0 1 18.04337492572
+average_mshr_uniq_len_g0 2 15.77987298485
+average_mshr_uniq_len_g0 3 17.78891089108
+###################### 0.9032585481846804
+********************mmu-frac-remote-mem-reqs-level-3 0.9381625441696113
+pagerank
+66642 70668
+tlb miss rate: 94.30293768042112
+67775 70629
+tlb miss rate: 95.95916691444025
+64852 70606
+tlb miss rate: 91.85055094467891
+60630 70542
+tlb miss rate: 85.94879646168239
+queue length 0 30.33913469843
+queue length 1 34.58083427198
+queue length 2 33.35695973217
+queue length 3 44.0596803937
+average_mshr_uniq_len_g0 0 59.74991035161
+average_mshr_uniq_len_g0 1 61.57026011391
+average_mshr_uniq_len_g0 2 59.29331197147
+average_mshr_uniq_len_g0 3 55.27669094197
+###################### 0.8067446759546106
+********************mmu-frac-remote-mem-reqs-level-3 0.9968366943455912
+simpleconvolution
+2058 34288
+tlb miss rate: 6.0020998600093325
+2058 33632
+tlb miss rate: 6.119172216936251
+2058 31316
+tlb miss rate: 6.571720526248563
+2042 26719
+tlb miss rate: 7.642501590628392
+queue length 0 1.31760382641
+queue length 1 1.48218958135
+queue length 2 1.52506705837
+queue length 3 1.48834162955
+average_mshr_uniq_len_g0 0 2.96263041847
+average_mshr_uniq_len_g0 1 3.25863388256
+average_mshr_uniq_len_g0 2 3.16756349006
+average_mshr_uniq_len_g0 3 3.00089087932
+###################### 0.43235282442142037
+********************mmu-frac-remote-mem-reqs-level-3 0.2088607594936709
+shoc-reduction
+1028 2076
+tlb miss rate: 49.51830443159923
+1028 2076
+tlb miss rate: 49.51830443159923
+1028 2076
+tlb miss rate: 49.51830443159923
+1028 2076
+tlb miss rate: 49.51830443159923
+queue length 0 1.20375722543
+queue length 1 1.19026974951
+queue length 2 1.16618497109
+queue length 3 1.20183044316
+average_mshr_uniq_len_g0 0 5.54885126964
+average_mshr_uniq_len_g0 1 5.18563943796
+average_mshr_uniq_len_g0 2 5.30378578024
+average_mshr_uniq_len_g0 3 5.21176768957
+###################### 0.8611512524084779
+********************mmu-frac-remote-mem-reqs-level-3 0.9454322501532803
+spmv
+66393 418754
+tlb miss rate: 15.854893326392105
+66865 415209
+tlb miss rate: 16.103938016757827
+65770 412704
+tlb miss rate: 15.93636116926417
+65217 417019
+tlb miss rate: 15.63885578354943
+queue length 0 32.34498692803
+queue length 1 40.92528845561
+queue length 2 49.92829087792
+queue length 3 41.10055050683
+average_mshr_uniq_len_g0 0 20.35721701978
+average_mshr_uniq_len_g0 1 36.37852298923
+average_mshr_uniq_len_g0 2 42.81393473048
+average_mshr_uniq_len_g0 3 23.07859573438
+###################### 0.5433747714412456
+********************mmu-frac-remote-mem-reqs-level-3 0.9977022614584593
+stencil2d
+55366 230414
+tlb miss rate: 24.028921853706805
+60170 229919
+tlb miss rate: 26.170085986804047
+60834 230739
+tlb miss rate: 26.364853795847253
+60454 230977
+tlb miss rate: 26.173168757062392
+queue length 0 1.72680485999
+queue length 1 4.44774621219
+queue length 2 3.43871179115
+queue length 3 2.17199814172
+average_mshr_uniq_len_g0 0 20.30914710269
+average_mshr_uniq_len_g0 1 31.81106617602
+average_mshr_uniq_len_g0 2 31.63771493046
+average_mshr_uniq_len_g0 3 30.78525940235
+###################### 0.44620947476760997
+********************mmu-frac-remote-mem-reqs-level-3 0.9988738857257122
+syrk
+['3, GPU1.CommandProcessor, kernel_time (force stop) 0, 0.000509758000']
+32650 1534561
+tlb miss rate: 2.127644323034405
+39335 302658
+tlb miss rate: 12.996517521426826
+43667 317336
+tlb miss rate: 13.7604936092974
+41872 303419
+tlb miss rate: 13.800058664750726
+queue length 0 9.49432754162
+queue length 1 108.98233326432
+queue length 2 111.94642440813
+queue length 3 111.46713804925
+average_mshr_uniq_len_g0 0 9.88510511168
+average_mshr_uniq_len_g0 1 63.55522482875
+average_mshr_uniq_len_g0 2 63.53973987394
+average_mshr_uniq_len_g0 3 63.60086118271
+###################### 0.9433646794253234
+********************mmu-frac-remote-mem-reqs-level-3 0.9991196740278686
+syr2k
+['3, GPU1.CommandProcessor, kernel_time (force stop) 0, 0.000571096000']
+78826 936038
+tlb miss rate: 8.421239308660546
+49087 731996
+tlb miss rate: 6.7059109612620835
+47921 754460
+tlb miss rate: 6.351695252233386
+48385 669218
+tlb miss rate: 7.230080481995403
+queue length 0 1.98733839142
+queue length 1 2.54054474504
+queue length 2 3.4636517041
+queue length 3 8.54051944223
+average_mshr_uniq_len_g0 0 25.0415240043
+average_mshr_uniq_len_g0 1 47.53406734669
+average_mshr_uniq_len_g0 2 44.76881018756
+average_mshr_uniq_len_g0 3 47.97452599929
+###################### 0.7167912236339326
+********************mmu-frac-remote-mem-reqs-level-3 0.9996215848028457
+shared/samples/
+['shared']
+convolution2d
+2053 100281
+tlb miss rate: 2.047247235268894
+2053 100206
+tlb miss rate: 2.0487795142007466
+2049 100155
+tlb miss rate: 2.0458289651040884
+2048 100073
+tlb miss rate: 2.046506050583074
+queue length 0 2.24403426371
+queue length 1 2.18316268486
+queue length 2 2.23169087913
+queue length 3 2.28115475702
+average_mshr_uniq_len_g0 0 6.00450937582
+average_mshr_uniq_len_g0 1 5.9070462026
+average_mshr_uniq_len_g0 2 6.01617019539
+average_mshr_uniq_len_g0 3 6.0203877551
+###################### 0.8637610271639444
+********************mmu-frac-remote-mem-reqs-level-3 0.9824337272436922
+fastwalshtransform
+515 1852
+tlb miss rate: 27.80777537796976
+514 1854
+tlb miss rate: 27.72384034519957
+513 1834
+tlb miss rate: 27.97164667393675
+521 1822
+tlb miss rate: 28.594950603732162
+queue length 0 1.07127429805
+queue length 1 1.06364617044
+queue length 2 1.05016357688
+queue length 3 1.07025246981
+average_mshr_uniq_len_g0 0 9.88811279265
+average_mshr_uniq_len_g0 1 9.69921924996
+average_mshr_uniq_len_g0 2 9.86419131529
+average_mshr_uniq_len_g0 3 9.35595567867
+###################### 0.710812279271937
+********************mmu-frac-remote-mem-reqs-level-3 0.9554730983302412
+gups
+396665 690065
+tlb miss rate: 57.48226616333244
+391852 642713
+tlb miss rate: 60.96842603152574
+389764 663088
+tlb miss rate: 58.780131747219066
+388883 641826
+tlb miss rate: 60.59009762770595
+queue length 0 30.82448307228
+queue length 1 22.19599627528
+queue length 2 108.2399655868
+queue length 3 131.26269409171
+average_mshr_uniq_len_g0 0 36.68563770261
+average_mshr_uniq_len_g0 1 49.64240624526
+average_mshr_uniq_len_g0 2 57.51614508698
+average_mshr_uniq_len_g0 3 58.98672652438
+###################### 0.5972243916272256
+********************mmu-frac-remote-mem-reqs-level-3 0.9999309372833797
+jacobi1d
+4101 16898
+tlb miss rate: 24.26914427742928
+4098 16885
+tlb miss rate: 24.270062185371632
+4097 16832
+tlb miss rate: 24.34054182509506
+4097 16877
+tlb miss rate: 24.275641405463055
+queue length 0 1.186294236
+queue length 1 1.18472016582
+queue length 2 1.17728136882
+queue length 3 1.18415595188
+average_mshr_uniq_len_g0 0 23.42154348333
+average_mshr_uniq_len_g0 1 23.35803091723
+average_mshr_uniq_len_g0 2 23.41289354738
+average_mshr_uniq_len_g0 3 23.42914198877
+###################### 0.42557636460617554
+********************mmu-frac-remote-mem-reqs-level-3 0.9867565615217915
+jacobi2d
+4095 105074
+tlb miss rate: 3.8972533642956395
+4095 105077
+tlb miss rate: 3.897142095796416
+4097 104955
+tlb miss rate: 3.903577723786385
+4097 105132
+tlb miss rate: 3.897005669063653
+queue length 0 2.74389477891
+queue length 1 2.68329891413
+queue length 2 2.71720261064
+queue length 3 2.59649773617
+average_mshr_uniq_len_g0 0 14.52259399231
+average_mshr_uniq_len_g0 1 14.58187219949
+average_mshr_uniq_len_g0 2 14.40138549307
+average_mshr_uniq_len_g0 3 14.54175006916
+###################### 0.48573665399130966
+********************mmu-frac-remote-mem-reqs-level-3 0.9899291008701256
+kmeans
+54688 377184
+tlb miss rate: 14.499024348858914
+54670 377201
+tlb miss rate: 14.493598903502377
+54573 377130
+tlb miss rate: 14.470606952509746
+54576 377143
+tlb miss rate: 14.470903609506209
+queue length 0 2.08795400177
+queue length 1 1.76452096292
+queue length 2 3.37032376032
+queue length 3 2.23216652411
+average_mshr_uniq_len_g0 0 23.72192948075
+average_mshr_uniq_len_g0 1 22.78133663043
+average_mshr_uniq_len_g0 2 23.20772537361
+average_mshr_uniq_len_g0 3 24.15292283115
+###################### 0.36084387581545985
+********************mmu-frac-remote-mem-reqs-level-3 0.9986648783759069
+matrixtranspose
+37657 107700
+tlb miss rate: 34.96471680594243
+37491 107517
+tlb miss rate: 34.86983453779403
+37658 107776
+tlb miss rate: 34.940988717339664
+37605 107555
+tlb miss rate: 34.96350704290828
+queue length 0 124.49127805257
+queue length 1 140.43453211778
+queue length 2 104.00208475919
+queue length 3 136.69824141244
+average_mshr_uniq_len_g0 0 60.29555399719
+average_mshr_uniq_len_g0 1 61.72743531396
+average_mshr_uniq_len_g0 2 60.61273585236
+average_mshr_uniq_len_g0 3 62.16508801226
+###################### 0.9662267621728587
+********************mmu-frac-remote-mem-reqs-level-3 0.9985356892466343
+mis
+259 113286
+tlb miss rate: 0.22862489628021113
+259 112095
+tlb miss rate: 0.2310540166822784
+259 112735
+tlb miss rate: 0.22974231605091588
+260 112213
+tlb miss rate: 0.2317022091914484
+queue length 0 2.63512702363
+queue length 1 2.48564164324
+queue length 2 2.43203086885
+queue length 3 2.37829841462
+average_mshr_uniq_len_g0 0 8.65174985656
+average_mshr_uniq_len_g0 1 8.91050632911
+average_mshr_uniq_len_g0 2 9.87874621941
+average_mshr_uniq_len_g0 3 8.79073482428
+###################### 0.5701498237954917
+********************mmu-frac-remote-mem-reqs-level-3 0.8663697104677061
+pagerank
+62173 70681
+tlb miss rate: 87.96281886221192
+61965 70623
+tlb miss rate: 87.74053778514082
+62030 70680
+tlb miss rate: 87.76174306734579
+61532 70500
+tlb miss rate: 87.27943262411347
+queue length 0 17.87783941988
+queue length 1 51.86971573307
+queue length 2 128.84492215992
+queue length 3 140.29371798361
+average_mshr_uniq_len_g0 0 23.82278273076
+average_mshr_uniq_len_g0 1 39.49088349942
+average_mshr_uniq_len_g0 2 47.83116691409
+average_mshr_uniq_len_g0 3 57.93342985335
+###################### 0.5450680392517806
+********************mmu-frac-remote-mem-reqs-level-3 0.9708659194512985
+simpleconvolution
+2050 30728
+tlb miss rate: 6.671439729237178
+2051 30712
+tlb miss rate: 6.678171398801772
+2051 30813
+tlb miss rate: 6.656281439652095
+2052 30689
+tlb miss rate: 6.686434878946853
+queue length 0 1.22119890653
+queue length 1 1.25944256316
+queue length 2 1.22019926654
+queue length 3 1.21897096679
+average_mshr_uniq_len_g0 0 2.79569553349
+average_mshr_uniq_len_g0 1 2.83861315654
+average_mshr_uniq_len_g0 2 2.85464789366
+average_mshr_uniq_len_g0 3 2.84310564467
+###################### 0.43191911633127816
+********************mmu-frac-remote-mem-reqs-level-3 0.9782159325806965
+shoc-reduction
+1026 2128
+tlb miss rate: 48.214285714285715
+1025 2064
+tlb miss rate: 49.66085271317829
+1025 2064
+tlb miss rate: 49.66085271317829
+1024 2048
+tlb miss rate: 50.0
+queue length 0 1.08834586466
+queue length 1 1.07655038759
+queue length 2 1.07897286821
+queue length 3 1.07958984375
+average_mshr_uniq_len_g0 0 3.07665069777
+average_mshr_uniq_len_g0 1 3.18801528252
+average_mshr_uniq_len_g0 2 3.07875401014
+average_mshr_uniq_len_g0 3 3.29879591217
+###################### 0.8473025048169557
+********************mmu-frac-remote-mem-reqs-level-3 0.9737092176116566
+spmv
+64545 401351
+tlb miss rate: 16.081933270379295
+64639 401293
+tlb miss rate: 16.10768191819942
+64057 398884
+tlb miss rate: 16.05905476278818
+64218 395776
+tlb miss rate: 16.225844922380336
+queue length 0 33.58828351677
+queue length 1 51.10956770502
+queue length 2 126.4575545186
+queue length 3 73.5784997957
+average_mshr_uniq_len_g0 0 38.51948809348
+average_mshr_uniq_len_g0 1 34.83607461241
+average_mshr_uniq_len_g0 2 46.17463681369
+average_mshr_uniq_len_g0 3 49.2360473871
+###################### 0.6022322613603922
+********************mmu-frac-remote-mem-reqs-level-3 0.9990778253256105
+stencil2d
+52371 229419
+tlb miss rate: 22.827664665960533
+52150 229405
+tlb miss rate: 22.73272160589351
+52024 229336
+tlb miss rate: 22.684619946279692
+51484 229945
+tlb miss rate: 22.389701885233425
+queue length 0 1.42490377867
+queue length 1 1.41874738457
+queue length 2 1.42142097184
+queue length 3 2.9495769717
+average_mshr_uniq_len_g0 0 21.51961085003
+average_mshr_uniq_len_g0 1 24.3363753637
+average_mshr_uniq_len_g0 2 24.78240794841
+average_mshr_uniq_len_g0 3 29.60307239565
+###################### 0.43352013113968446
+********************mmu-frac-remote-mem-reqs-level-3 0.9990827512331544
+syrk
+['3, GPU1.CommandProcessor, kernel_time (force stop) 0, 0.000221541000']
+337 572978
+tlb miss rate: 0.05881552171287553
+337 576546
+tlb miss rate: 0.05845153725808522
+337 576480
+tlb miss rate: 0.05845822925339995
+336 576382
+tlb miss rate: 0.05829467263030421
+queue length 0 2.75839616055
+queue length 1 2.7887783229
+queue length 2 2.76948615695
+queue length 3 3.02420735115
+average_mshr_uniq_len_g0 0 10.07503387533
+average_mshr_uniq_len_g0 1 23.21128798842
+average_mshr_uniq_len_g0 2 21.36333781161
+average_mshr_uniq_len_g0 3 27.04880108071
+###################### 0.7973922945827202
+********************mmu-frac-remote-mem-reqs-level-3 0.9206927985414768
+syr2k
+['3, GPU1.CommandProcessor, kernel_time (force stop) 0, 0.000382825000']
+193 596640
+tlb miss rate: 0.032347814427460445
+193 597478
+tlb miss rate: 0.03230244460883915
+193 598102
+tlb miss rate: 0.03226874345847364
+192 599069
+tlb miss rate: 0.03204973049849016
+queue length 0 1.87477206296
+queue length 1 1.87106270878
+queue length 2 1.872972616
+queue length 3 1.87557399843
+average_mshr_uniq_len_g0 0 8.47977877635
+average_mshr_uniq_len_g0 1 21.15975733063
+average_mshr_uniq_len_g0 2 20.72456492637
+average_mshr_uniq_len_g0 3 24.61147826087
+###################### 0.6481120769035836
+********************mmu-frac-remote-mem-reqs-level-3 0.869172932330827
+mgvm-nobalance/samples/
+['mgvm-nobalance']
+convolution2d
+2051 70170
+tlb miss rate: 2.9229015248681773
+2052 71504
+tlb miss rate: 2.869769523383307
+2052 72452
+tlb miss rate: 2.8322199525202896
+2048 72916
+tlb miss rate: 2.808711393932745
+queue length 0 2.69683625481
+queue length 1 5.2730616469
+queue length 2 3.25981339369
+queue length 3 3.00750178287
+average_mshr_uniq_len_g0 0 5.14283289484
+average_mshr_uniq_len_g0 1 4.99294552068
+average_mshr_uniq_len_g0 2 4.97235010105
+average_mshr_uniq_len_g0 3 5.30242107964
+###################### 0.8655562600595035
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+fastwalshtransform
+534 2001
+tlb miss rate: 26.686656671664167
+512 1813
+tlb miss rate: 28.240485383342527
+512 1812
+tlb miss rate: 28.2560706401766
+512 1799
+tlb miss rate: 28.46025569760978
+queue length 0 1.17091454272
+queue length 1 1.48042895442
+queue length 2 1.48554603854
+queue length 3 1.17843246247
+average_mshr_uniq_len_g0 0 7.5628546211
+average_mshr_uniq_len_g0 1 8.42246550689
+average_mshr_uniq_len_g0 2 9.10621273925
+average_mshr_uniq_len_g0 3 8.73595166163
+###################### 0.7107070707070707
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+gups
+512529 902284
+tlb miss rate: 56.80351197627355
+405424 599796
+tlb miss rate: 67.5936485071591
+382659 567540
+tlb miss rate: 67.42414631567819
+386039 568801
+tlb miss rate: 67.86890318406613
+queue length 0 173.72589592857
+queue length 1 18.97385788018
+queue length 2 15.18665990792
+queue length 3 6.26143723638
+average_mshr_uniq_len_g0 0 54.77378898237
+average_mshr_uniq_len_g0 1 18.37522779949
+average_mshr_uniq_len_g0 2 15.63499305105
+average_mshr_uniq_len_g0 3 11.99263490714
+###################### 0.5059313885085056
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+jacobi1d
+4103 17256
+tlb miss rate: 23.777236903106168
+4097 17105
+tlb miss rate: 23.9520608009354
+4097 16537
+tlb miss rate: 24.774747535828748
+4096 16319
+tlb miss rate: 25.099577179974265
+queue length 0 1.22137227631
+queue length 1 1.22198187664
+queue length 2 1.20916732176
+queue length 3 1.19982842085
+average_mshr_uniq_len_g0 0 17.9339360845
+average_mshr_uniq_len_g0 1 18.39943982652
+average_mshr_uniq_len_g0 2 16.81253418413
+average_mshr_uniq_len_g0 3 16.42562113901
+###################### 0.4279572132049928
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+jacobi2d
+4098 105327
+tlb miss rate: 3.8907402660286534
+4098 106362
+tlb miss rate: 3.8528797878941727
+4098 103223
+tlb miss rate: 3.97004543561028
+4090 101941
+tlb miss rate: 4.012124660342748
+queue length 0 6.32840582186
+queue length 1 6.99180158327
+queue length 2 7.83856311093
+queue length 3 7.05866138256
+average_mshr_uniq_len_g0 0 14.04403540991
+average_mshr_uniq_len_g0 1 13.92326947534
+average_mshr_uniq_len_g0 2 14.13302254551
+average_mshr_uniq_len_g0 3 14.66248712463
+###################### 0.5409916685258352
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+kmeans
+55670 379091
+tlb miss rate: 14.685128372870892
+55420 376812
+tlb miss rate: 14.707599545662028
+55326 376814
+tlb miss rate: 14.682575488171883
+55235 376820
+tlb miss rate: 14.658192240326947
+queue length 0 17.07080333692
+queue length 1 11.84381225595
+queue length 2 12.71914958577
+queue length 3 9.78675040713
+average_mshr_uniq_len_g0 0 20.17419333412
+average_mshr_uniq_len_g0 1 20.39658928564
+average_mshr_uniq_len_g0 2 18.44133276206
+average_mshr_uniq_len_g0 3 19.37684476055
+###################### 0.4472914542671031
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+matrixtranspose
+41566 107407
+tlb miss rate: 38.69952610165073
+41760 107575
+tlb miss rate: 38.81942830583314
+37606 107482
+tlb miss rate: 34.98818406803
+41065 107222
+tlb miss rate: 38.299043106825096
+queue length 0 190.30009647837
+queue length 1 60.47361017854
+queue length 2 148.67650463194
+queue length 3 208.914358782
+average_mshr_uniq_len_g0 0 55.99405214435
+average_mshr_uniq_len_g0 1 46.53744599893
+average_mshr_uniq_len_g0 2 43.8465402742
+average_mshr_uniq_len_g0 3 53.93952215303
+###################### 0.9473033796772526
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+mis
+512 16069
+tlb miss rate: 3.1862592569543846
+512 427549
+tlb miss rate: 0.1197523558703213
+13 512
+tlb miss rate: 2.5390625
+0 0
+tlb miss rate: 0.0
+queue length 0 29.91504565303
+queue length 1 414.53713543924
+queue length 2 1.935546875
+queue length 3 0
+average_mshr_uniq_len_g0 0 19.70056750298
+average_mshr_uniq_len_g0 1 33.46287847366
+average_mshr_uniq_len_g0 2 1.0
+average_mshr_uniq_len_g0 3 0.0
+###################### 0.9344876500123838
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+pagerank
+67153 71389
+tlb miss rate: 94.06631273725644
+61707 70269
+tlb miss rate: 87.81539512445032
+59578 70295
+tlb miss rate: 84.75424994665339
+62098 70297
+tlb miss rate: 88.33662887463191
+queue length 0 31.07579192911
+queue length 1 131.44441069127
+queue length 2 110.02114003444
+queue length 3 118.74520405862
+average_mshr_uniq_len_g0 0 60.01512666838
+average_mshr_uniq_len_g0 1 53.86079186363
+average_mshr_uniq_len_g0 2 50.18940196157
+average_mshr_uniq_len_g0 3 50.38228147602
+###################### 0.8417537643932684
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+simpleconvolution
+2052 34062
+tlb miss rate: 6.024308613704421
+2053 33780
+tlb miss rate: 6.077560686796922
+2053 31556
+tlb miss rate: 6.50589428317911
+2046 27372
+tlb miss rate: 7.474791758000878
+queue length 0 1.27408842698
+queue length 1 1.29499703966
+queue length 2 1.37435036126
+queue length 3 1.27341809148
+average_mshr_uniq_len_g0 0 3.00125437849
+average_mshr_uniq_len_g0 1 2.9392044148
+average_mshr_uniq_len_g0 2 3.1799975275
+average_mshr_uniq_len_g0 3 2.77199521443
+###################### 0.4313007809418632
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+shoc-reduction
+1028 2160
+tlb miss rate: 47.592592592592595
+1024 2048
+tlb miss rate: 50.0
+1024 2048
+tlb miss rate: 50.0
+1024 2048
+tlb miss rate: 50.0
+queue length 0 1.51342592592
+queue length 1 1.18115234375
+queue length 2 1.17529296875
+queue length 3 1.208984375
+average_mshr_uniq_len_g0 0 10.81130132578
+average_mshr_uniq_len_g0 1 10.32520838595
+average_mshr_uniq_len_g0 2 10.22088305489
+average_mshr_uniq_len_g0 3 11.32307485553
+###################### 0.8588631984585742
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+spmv
+70718 103219
+tlb miss rate: 68.51258004824693
+55046 1368425
+tlb miss rate: 4.022580704094122
+48562 77520
+tlb miss rate: 62.64447884416925
+49161 77863
+tlb miss rate: 63.13781898976407
+queue length 0 1.8573613803
+queue length 1 22.8324909721
+queue length 2 1.11388643379
+queue length 3 2.41903385728
+average_mshr_uniq_len_g0 0 10.32808162306
+average_mshr_uniq_len_g0 1 8.32299024654
+average_mshr_uniq_len_g0 2 9.72804300068
+average_mshr_uniq_len_g0 3 11.82214607059
+###################### 0.6208120701131573
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+stencil2d
+60255 238188
+tlb miss rate: 25.29724419366215
+59887 228502
+tlb miss rate: 26.208523338964213
+61493 227316
+tlb miss rate: 27.051769343117073
+60928 227300
+tlb miss rate: 26.805103387593487
+queue length 0 1.81419447368
+queue length 1 1.69201144847
+queue length 2 1.75053756821
+queue length 3 1.72437340668
+average_mshr_uniq_len_g0 0 17.7501766507
+average_mshr_uniq_len_g0 1 17.39258829474
+average_mshr_uniq_len_g0 2 18.87287735141
+average_mshr_uniq_len_g0 3 17.51272636915
+###################### 0.4413951499284711
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+syrk
+['3, GPU1.CommandProcessor, kernel_time (force stop) 0, 0.000267844000']
+515 1042571
+tlb miss rate: 0.04939711540029408
+512 875866
+tlb miss rate: 0.05845643054987863
+320 411748
+tlb miss rate: 0.07771743882180364
+0 0
+tlb miss rate: 0.0
+queue length 0 342.54594814715
+queue length 1 6.53022300002
+queue length 2 7.21434486845
+queue length 3 0
+average_mshr_uniq_len_g0 0 45.03968514267
+average_mshr_uniq_len_g0 1 52.50026723677
+average_mshr_uniq_len_g0 2 32.92872727272
+average_mshr_uniq_len_g0 3 0.0
+###################### 0.9161639360864859
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+syr2k
+['3, GPU1.CommandProcessor, kernel_time (force stop) 0, 0.000495051000']
+512 1956890
+tlb miss rate: 0.026163964249395728
+259 299925
+tlb miss rate: 0.0863549220638493
+0 0
+tlb miss rate: 0.0
+0 0
+tlb miss rate: 0.0
+queue length 0 488.71133691144
+queue length 1 3.62534807357
+queue length 2 0
+queue length 3 0
+average_mshr_uniq_len_g0 0 49.26220763233
+average_mshr_uniq_len_g0 1 53.164504411
+average_mshr_uniq_len_g0 2 0.0
+average_mshr_uniq_len_g0 3 0.0
+###################### 0.9589404977067808
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+mgvm/samples/
+['mgvm']
+convolution2d
+2051 70170
+tlb miss rate: 2.9229015248681773
+2052 71504
+tlb miss rate: 2.869769523383307
+2052 72452
+tlb miss rate: 2.8322199525202896
+2048 72916
+tlb miss rate: 2.808711393932745
+queue length 0 2.69683625481
+queue length 1 5.2730616469
+queue length 2 3.25981339369
+queue length 3 3.00750178287
+average_mshr_uniq_len_g0 0 5.14283289484
+average_mshr_uniq_len_g0 1 4.99294552068
+average_mshr_uniq_len_g0 2 4.97235010105
+average_mshr_uniq_len_g0 3 5.30242107964
+###################### 0.8655562600595035
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+fastwalshtransform
+534 1996
+tlb miss rate: 26.753507014028056
+512 1816
+tlb miss rate: 28.193832599118945
+512 1813
+tlb miss rate: 28.240485383342527
+512 1788
+tlb miss rate: 28.635346756152124
+queue length 0 1.16633266533
+queue length 1 1.47751605995
+queue length 2 1.4783306581
+queue length 3 1.17449664429
+average_mshr_uniq_len_g0 0 7.45679780876
+average_mshr_uniq_len_g0 1 8.62581132075
+average_mshr_uniq_len_g0 2 9.10621273925
+average_mshr_uniq_len_g0 3 8.73595166163
+###################### 0.7156346958046674
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+gups
+509332 902873
+tlb miss rate: 56.41236364361322
+403124 598367
+tlb miss rate: 67.37069390524543
+380509 566201
+tlb miss rate: 67.20387282961352
+381508 565679
+tlb miss rate: 67.44248946840877
+queue length 0 169.75390734242
+queue length 1 34.47123442961
+queue length 2 14.33581146623
+queue length 3 3.78064719381
+average_mshr_uniq_len_g0 0 52.52182732699
+average_mshr_uniq_len_g0 1 19.16187449867
+average_mshr_uniq_len_g0 2 16.26910536717
+average_mshr_uniq_len_g0 3 11.75810067092
+###################### 0.4960214498389743
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+jacobi1d
+4103 17312
+tlb miss rate: 23.70032347504621
+4097 17050
+tlb miss rate: 24.029325513196483
+4097 16637
+tlb miss rate: 24.625833984492395
+4096 16556
+tlb miss rate: 24.740275428847546
+queue length 0 1.22701016635
+queue length 1 1.22158357771
+queue length 2 1.20712868906
+queue length 3 1.21442377385
+average_mshr_uniq_len_g0 0 18.5069728919
+average_mshr_uniq_len_g0 1 17.69697175448
+average_mshr_uniq_len_g0 2 17.49225077266
+average_mshr_uniq_len_g0 3 16.06075875002
+###################### 0.42888017171193843
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+jacobi2d
+4098 104359
+tlb miss rate: 3.9268295020074935
+4098 105631
+tlb miss rate: 3.879542937205934
+4098 103785
+tlb miss rate: 3.9485474779592424
+4090 101531
+tlb miss rate: 4.028326323979868
+queue length 0 6.15411224714
+queue length 1 6.92689646031
+queue length 2 6.92265741677
+queue length 3 6.87514158237
+average_mshr_uniq_len_g0 0 13.97038761589
+average_mshr_uniq_len_g0 1 14.34350823746
+average_mshr_uniq_len_g0 2 14.42152980199
+average_mshr_uniq_len_g0 3 14.63492890046
+###################### 0.5341579461890751
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+kmeans
+57828 379101
+tlb miss rate: 15.253982447949227
+56910 376808
+tlb miss rate: 15.103182522664063
+56587 376812
+tlb miss rate: 15.017303058289015
+57461 376811
+tlb miss rate: 15.249289431571796
+queue length 0 18.03182560147
+queue length 1 12.82886509732
+queue length 2 9.82214176187
+queue length 3 13.39896771998
+average_mshr_uniq_len_g0 0 19.39026276685
+average_mshr_uniq_len_g0 1 21.87383353177
+average_mshr_uniq_len_g0 2 19.46077679394
+average_mshr_uniq_len_g0 3 19.14636270378
+###################### 0.43871014327619423
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+matrixtranspose
+42375 107612
+tlb miss rate: 39.3775787086942
+41796 107635
+tlb miss rate: 38.83123519301343
+38233 107182
+tlb miss rate: 35.671101490921984
+41500 107393
+tlb miss rate: 38.64311454191614
+queue length 0 202.15679743558
+queue length 1 38.03863814337
+queue length 2 171.62288997679
+queue length 3 218.68824112433
+average_mshr_uniq_len_g0 0 55.88219918385
+average_mshr_uniq_len_g0 1 42.06666121213
+average_mshr_uniq_len_g0 2 44.72302470259
+average_mshr_uniq_len_g0 3 54.0168803836
+###################### 0.9421946759356199
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+mis
+706 102442
+tlb miss rate: 0.6891704574295698
+739 154089
+tlb miss rate: 0.4795929625086801
+204 96638
+tlb miss rate: 0.21109708396283036
+191 95903
+tlb miss rate: 0.1991595674796409
+queue length 0 8.65779249363
+queue length 1 142.82998458376
+queue length 2 2.26853825617
+queue length 3 2.30650761707
+average_mshr_uniq_len_g0 0 18.3576562188
+average_mshr_uniq_len_g0 1 8.69621313672
+average_mshr_uniq_len_g0 2 5.48656406985
+average_mshr_uniq_len_g0 3 6.68443780103
+###################### 0.6095378702349061
+********************mmu-frac-remote-mem-reqs-level-3 0.7966751918158568
+pagerank
+67883 71437
+tlb miss rate: 95.02498705152792
+62075 70273
+tlb miss rate: 88.3340685611828
+61428 70252
+tlb miss rate: 87.43950350167967
+61313 70279
+tlb miss rate: 87.24227720940821
+queue length 0 39.06894036236
+queue length 1 133.0427529275
+queue length 2 124.82534836708
+queue length 3 112.69054918342
+average_mshr_uniq_len_g0 0 61.20029574263
+average_mshr_uniq_len_g0 1 53.46587452131
+average_mshr_uniq_len_g0 2 51.89084432531
+average_mshr_uniq_len_g0 3 50.64397541129
+###################### 0.8603923597209477
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+simpleconvolution
+2052 33939
+tlb miss rate: 6.046141607000796
+2053 33960
+tlb miss rate: 6.045347467608952
+2053 31618
+tlb miss rate: 6.49313682079828
+2046 27552
+tlb miss rate: 7.42595818815331
+queue length 0 1.27399157311
+queue length 1 1.29487632508
+queue length 2 1.37592510595
+queue length 3 1.26578832752
+average_mshr_uniq_len_g0 0 3.16597799571
+average_mshr_uniq_len_g0 1 3.01793574202
+average_mshr_uniq_len_g0 2 3.12479226094
+average_mshr_uniq_len_g0 3 2.92441792714
+###################### 0.4304039537574074
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+shoc-reduction
+1028 2160
+tlb miss rate: 47.592592592592595
+1024 2048
+tlb miss rate: 50.0
+1024 2048
+tlb miss rate: 50.0
+1024 2048
+tlb miss rate: 50.0
+queue length 0 1.51342592592
+queue length 1 1.18115234375
+queue length 2 1.17529296875
+queue length 3 1.208984375
+average_mshr_uniq_len_g0 0 10.81130132578
+average_mshr_uniq_len_g0 1 10.32520838595
+average_mshr_uniq_len_g0 2 10.22088305489
+average_mshr_uniq_len_g0 3 11.32307485553
+###################### 0.8588631984585742
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+spmv
+71815 103336
+tlb miss rate: 69.49659363629326
+56450 1371481
+tlb miss rate: 4.115988482523637
+50133 77754
+tlb miss rate: 64.47642565012733
+49654 77371
+tlb miss rate: 64.17650023910768
+queue length 0 2.53682211437
+queue length 1 14.70306477732
+queue length 2 1.22258011127
+queue length 3 7.31716926019
+average_mshr_uniq_len_g0 0 11.28596827422
+average_mshr_uniq_len_g0 1 8.38362511058
+average_mshr_uniq_len_g0 2 8.44875521657
+average_mshr_uniq_len_g0 3 11.7769891628
+###################### 0.6033128786177667
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+stencil2d
+60603 237606
+tlb miss rate: 25.50566904876139
+59543 228415
+tlb miss rate: 26.067902720924636
+60102 225239
+tlb miss rate: 26.68365602759735
+61705 227116
+tlb miss rate: 27.16893569805738
+queue length 0 1.81526943464
+queue length 1 1.7260678175
+queue length 2 1.71969596594
+queue length 3 1.74121014438
+average_mshr_uniq_len_g0 0 18.27817148052
+average_mshr_uniq_len_g0 1 17.25608801351
+average_mshr_uniq_len_g0 2 17.74040377556
+average_mshr_uniq_len_g0 3 17.68168941922
+###################### 0.442228455447442
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+syrk
+['3, GPU1.CommandProcessor, kernel_time (force stop) 0, 0.000267844000']
+515 1042575
+tlb miss rate: 0.04939692588063209
+512 875866
+tlb miss rate: 0.05845643054987863
+320 411748
+tlb miss rate: 0.07771743882180364
+0 0
+tlb miss rate: 0.0
+queue length 0 342.54612003617
+queue length 1 6.53022300002
+queue length 2 7.21432977622
+queue length 3 0
+average_mshr_uniq_len_g0 0 45.03968514267
+average_mshr_uniq_len_g0 1 52.50026723677
+average_mshr_uniq_len_g0 2 32.92872727272
+average_mshr_uniq_len_g0 3 0.0
+###################### 0.9161641159706627
+********************mmu-frac-remote-mem-reqs-level-3 0.0
+syr2k
+['3, GPU1.CommandProcessor, kernel_time (force stop) 0, 0.000385745000']
+576 613996
+tlb miss rate: 0.09381168606961608
+387 595340
+tlb miss rate: 0.06500487116605637
+192 589492
+tlb miss rate: 0.03257041656205682
+192 591174
+tlb miss rate: 0.03247774766819921
+queue length 0 21.58732615067
+queue length 1 3.13908304663
+queue length 2 2.08682033517
+queue length 3 2.1703124578
+average_mshr_uniq_len_g0 0 21.68857668506
+average_mshr_uniq_len_g0 1 50.06326949384
+average_mshr_uniq_len_g0 2 17.98869538649
+average_mshr_uniq_len_g0 3 16.74635308127
+###################### 0.6582826583031598
+********************mmu-frac-remote-mem-reqs-level-3 0.8335745296671491
