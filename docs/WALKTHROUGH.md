@@ -249,10 +249,11 @@ What each figure is computed from (`metrics.csv` → `results.csv` → `normaliz
 2. **Made the scripts runnable on a normal machine**
    * `2_copy_benchmarks.sh` created the folders and then deleted them again in the same script —
      the deletion was moved to `0_clean.sh`.
-   * `3_gen_runners.py --preset small`: smaller inputs. The MGvm parameters are scaled by the same
-     rule the authors used for the paper inputs (checked against all 15 of their values):
+   * `3_gen_runners.py --preset small`: smaller inputs. The MGvm parameters are scaled with the
+     rule that reproduces the authors' values for the dense-array workloads:
      `custom-hsl = largest allocation / 4 chiplets / 4 KB` (minimum 512 pages = 2 MB) and
-     `hslaware-N` with `N = custom-hsl / 512`. GUPS, MT and S2D already used their paper inputs.
+     `hslaware-N` with `N = custom-hsl / 512`. For SPMV, MIS and SYR2K the authors used the 2 MB
+     minimum, and so do we. GUPS, MT and S2D already used their paper inputs.
    * `4_run_all.sh`: runs all 60 simulations with a limit on parallel jobs (`MGVM_JOBS`), reports
      the real exit code (an earlier version logged out-of-memory kills as exit 0), and skips runs
      that already finished so it can be resumed.
