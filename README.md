@@ -59,6 +59,45 @@ MGVM_JOBS=3 nohup ./4_run_all.sh > run_all.log 2>&1 &
 re-run after a failure. The original per-configuration scripts
 (`4_run_benchmarks_<config>.sh`) still work but start 15 simulations at once.
 
+### With Docker
+
+Both ways below were tested. Your user must be allowed to run Docker (be in
+the `docker` group, or use `sudo docker`).
+
+**A. Exactly as in the paper's appendix**, with the two files from the Zenodo
+archive (`mgvm.Dockerfile` and `mgvm.tar.gz`) in one folder. This uses the
+original, unmodified scripts, which only have the paper inputs.
+
+```bash
+unzip 6937470.zip                      # gives mgvm.Dockerfile and mgvm.tar.gz
+docker build -f mgvm.Dockerfile . -t mgvm
+docker run -dit --name mgvm mgvm       # detached, as the appendix recommends
+docker exec -it mgvm bash
+cd mgvm/scripts
+./0_clean.sh; ./1_compile_benchmarks.py; ./2_copy_benchmarks.sh; ./3_gen_runners.py
+./4_run_benchmarks_private.sh          # and _shared, _mgvm-nobalance, _mgvm
+```
+
+**B. From this repository** (includes the fixes, `--preset small`,
+`4_run_all.sh` and the plotting script):
+
+```bash
+git clone https://github.com/Prayag-Mohanty/MGVm-GPU.git && cd MGVm-GPU
+docker build -t mgvm-repo .
+docker run -dit --name mgvm-repo mgvm-repo
+docker exec -it mgvm-repo bash         # starts in /root/mgvm/scripts
+./0_clean.sh && ./1_compile_benchmarks.py && ./2_copy_benchmarks.sh
+./3_gen_runners.py --preset small
+MGVM_JOBS=4 nohup ./4_run_all.sh > run_all.log 2>&1 &
+```
+
+The simulations keep running when you leave with `exit`, because the
+container runs detached. Copy results out with
+`docker cp mgvm-repo:/root/mgvm/scripts/figures .` (and the same for
+`results.csv`, `normalized.csv`). If `docker build` fails with
+`429 Too Many Requests`, Docker Hub is rate-limiting your network: run
+`docker login` or wait and retry.
+
 ### Presets
 
 - `paper`: the inputs used in the paper (C2D 8192x8192, J1D 64M elements, ...).
@@ -118,8 +157,6 @@ under MGvm than under private TLB at this scale.
 
 ### Fixes to the original scripts
 
-- `2_copy_benchmarks.sh` deleted the folders it had just created; the removal
-  moved to `0_clean.sh`.
 - `6_normalize_results.py` wrote two separator columns before the L2 TLB hit
   group and before the page-walk group, but its header has one. Every column
   from "L2 TLB Local Hits" onward was therefore labelled one or two columns

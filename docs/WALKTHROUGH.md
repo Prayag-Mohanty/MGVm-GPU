@@ -247,8 +247,9 @@ What each figure is computed from (`metrics.csv` → `results.csv` → `normaliz
 1. **Imported the artifact unchanged** from the Zenodo archive (only removed a stray 20 MB binary,
    two prebuilt test binaries and Python caches). It builds as-is with Go 1.22/1.24.
 2. **Made the scripts runnable on a normal machine**
-   * `2_copy_benchmarks.sh` created the folders and then deleted them again in the same script —
-     the deletion was moved to `0_clean.sh`.
+   * `0_clean.sh` also removes the results; `2_copy_benchmarks.sh` can be re-run and run from any
+     directory. (The original scripts work as they are; an earlier version of this document wrongly
+     said `2_copy_benchmarks.sh` deleted its own folders.)
    * `3_gen_runners.py --preset small`: smaller inputs. The MGvm parameters are scaled with the
      rule that reproduces the authors' values for the dense-array workloads:
      `custom-hsl = largest allocation / 4 chiplets / 4 KB` (minimum 512 pages = 2 MB) and

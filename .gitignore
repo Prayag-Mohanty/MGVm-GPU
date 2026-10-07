@@ -23,3 +23,9 @@ __pycache__/
 /mgpusim/samples/stencil2d/stencil2d
 /mgpusim/samples/syrk/syrk
 /mgpusim/samples/syr2k/syr2k
+
+# outputs of steps 5-7 (published copies live in results/)
+/scripts/results.csv
+/scripts/normalized.csv
+/scripts/figures/
+/scripts/*.log
