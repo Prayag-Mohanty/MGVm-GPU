@@ -1,0 +1,15 @@
+09:37:20 private fastwalshtransform exit=0 1037s
+09:49:24 private mis exit=0 1761s
+09:55:12 shared fastwalshtransform exit=0 1072s
+10:11:37 shared mis exit=0 1333s
+10:12:29 mgvm-nobalance fastwalshtransform exit=0 1037s
+10:29:17 mgvm fastwalshtransform exit=0 1008s
+10:34:35 mgvm-nobalance mis exit=0 1378s
+10:50:50 mgvm mis exit=0 1293s
+=== fw+mis done 10:50:50
+12:37:03 private syrk exit=0 6373s
+14:41:53 shared syrk exit=0 7490s
+16:38:07 mgvm-nobalance syrk exit=0 6974s
+18:23:09 mgvm syrk exit=0 6302s
+=== syrk done 18:23:09
+=== PIPELINE DONE 18:23:10

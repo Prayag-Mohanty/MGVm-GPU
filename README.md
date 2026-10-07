@@ -155,6 +155,40 @@ configurations because translation is not on their critical path at this
 size. So the average speedups are smaller than in the paper. MIS is slower
 under MGvm than under private TLB at this scale.
 
+## Results (`paper` preset, three workloads)
+
+FW, MIS and SYRK were also run with the paper's inputs (FW 8M elements, MIS
+524,288 nodes, SYRK 2048x2048 stopped at 10M instructions), 12 runs in
+`results/paper/`. GUPS, MT and S2D use the paper's inputs in the small
+preset too. Each SYRK run took about 2 hours and 8-9GB of RAM.
+
+L2 TLB MPKI reproduces Table III almost exactly:
+
+| Workload | Private (ours / paper) | Shared | MGvm |
+|---|---|---|---|
+| FW | 2.28 / 2.28 | 2.27 / 2.28 | 2.27 / 2.28 |
+| MIS | 261.2 / 260.5 | 2.18 / 2.11 | 8.66 / 8.50 |
+| SYRK | 201.46 / 201.46 | 53.03 / 53.03 | 53.07 / 53.17 |
+
+Throughput normalized to private TLB, and page-walk behaviour:
+
+| Workload | Shared | MGvm-nobalance | MGvm | PW latency shared / MGvm | Local PTE reads private / shared / MGvm |
+|---|---|---|---|---|---|
+| FW | 0.98x | 1.00x | 1.00x | 1.34x / 1.00x | 99% / 25% / 99% |
+| MIS | 5.02x | 4.10x | 4.96x | 3.58x / 1.00x | 34% / 25% / 89% |
+| SYRK | 1.96x | 1.75x | 1.97x | 1.91x / 1.89x | 79% / 25% / 26% |
+
+- MIS shows the paper's large gain from TLB capacity (~5x over private; the
+  small preset showed MIS slower under MGvm, so input size matters).
+  Balancing gives +21% over MGvm-nobalance. MGvm keeps 89% of page-walk
+  reads local, against 25% for the shared TLB, which removes the 3.6x
+  slower walks of the shared TLB.
+- SYRK gains ~2x from the aggregate TLB capacity under both shared TLB and
+  MGvm. MGvm switches it to dHSL-balance, which gives up local PTE
+  placement (26% local), as the paper describes for SYRK and SYR2.
+- On MIS, MGvm ties the shared TLB here (4.96x vs 5.02x); the paper's
+  Figure 7 shows MGvm ahead.
+
 ### Fixes to the original scripts
 
 - `6_normalize_results.py` wrote two separator columns before the L2 TLB hit
