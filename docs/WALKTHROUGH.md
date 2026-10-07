@@ -300,6 +300,18 @@ bottleneck at this size; MIS is slower under MGvm than under private TLB at this
 
 ---
 
+### Paper-size inputs (FW, MIS, SYRK)
+
+These three were also run with the paper's inputs (`results/paper/`). L2 TLB MPKI matches Table III
+almost exactly: FW 2.28 / 2.27 / 2.27 (paper 2.28 for all), MIS 261.2 / 2.18 / 8.66 (paper 260.5 /
+2.11 / 8.50), SYRK 201.46 / 53.03 / 53.07 (paper 201.46 / 53.03 / 53.17), for private / shared / MGvm.
+
+Throughput vs. private TLB: FW 0.98x / 1.00x / 1.00x (shared / nobalance / MGvm), MIS 5.02x / 4.10x /
+4.96x, SYRK 1.96x / 1.75x / 1.97x. At paper size MIS shows the ~5x gain from TLB capacity that the
+small preset missed, and balancing adds 21 %. MGvm keeps 89 % of MIS page-walk reads local (shared: 25 %).
+SYRK switches to dHSL-balance and so its PTE reads are mostly remote, as the paper describes.
+On MIS, MGvm only ties the shared TLB here, while the paper's Figure 7 shows MGvm ahead.
+
 ## 8. The other branch: `reimplementation-mgpusim-v3`
 
 Before the artifact was available, MGvm was reimplemented from the paper on the current upstream
