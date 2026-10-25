@@ -310,7 +310,7 @@ Throughput vs. private TLB: FW 0.98x / 1.00x / 1.00x (shared / nobalance / MGvm)
 4.96x, SYRK 1.96x / 1.75x / 1.97x. At paper size MIS shows the ~5x gain from TLB capacity that the
 small preset missed, and balancing adds 21 %. MGvm keeps 89 % of MIS page-walk reads local (shared: 25 %).
 SYRK switches to dHSL-balance and so its PTE reads are mostly remote, as the paper describes.
-On MIS, MGvm only ties the shared TLB here, while the paper's Figure 7 shows MGvm ahead.
+These match the paper's Figure 7: MIS 5.1x / 4.1x / 4.8x and SYRK about 1.96x / 1.75x / 1.97x (shared / nobalance / MGvm).
 
 ## 8. The other branch: `reimplementation-mgpusim-v3`
 

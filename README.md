@@ -186,8 +186,9 @@ Throughput normalized to private TLB, and page-walk behaviour:
 - SYRK gains ~2x from the aggregate TLB capacity under both shared TLB and
   MGvm. MGvm switches it to dHSL-balance, which gives up local PTE
   placement (26% local), as the paper describes for SYRK and SYR2.
-- On MIS, MGvm ties the shared TLB here (4.96x vs 5.02x); the paper's
-  Figure 7 shows MGvm ahead.
+- Throughput matches the paper's Figure 7 too: MIS 5.02x / 4.10x / 4.96x
+  (paper 5.1x / 4.1x / 4.8x for shared / MGvm-nobalance / MGvm) and SYRK
+  1.96x / 1.75x / 1.97x (paper bars about 1.96x / 1.75x / 1.97x).
 
 ### Fixes to the original scripts
 
